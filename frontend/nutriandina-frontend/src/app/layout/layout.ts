@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { filter } from 'rxjs';
 import { ButtonModule } from 'primeng/button';
 import { Home, User, Users, Book, Building, Sitemap, Trophy, Gift, Apple, List, Cog } from '@primeicons/angular';
 import { ApiService } from '../../services/api.service';
@@ -19,23 +20,18 @@ export class LayoutComponent {
     private cdr: ChangeDetectorRef,
     private router: Router,
     private autToken: AuthenticationToken
-  ) {}
+  ) {
+    this.router.events
+      .pipe(filter(e => e instanceof NavigationEnd))
+      .subscribe(() => this.cargarMenu());
+  }
 
-  items: Menu[] = [
-    { id: 1, texto: 'Inicio', icono: 'home', ruta: '/', orden: 1 },
-    { id: 2, texto: 'Establecimientos', icono: 'building', ruta: '/establecimiento', orden: 2 },
-    { id: 3, texto: 'Comunidades', icono: 'sitemap', ruta: '/comunidad', orden: 3 },
-    { id: 4, texto: 'Niños', icono: 'user', ruta: '/nino', orden: 4 },
-    { id: 5, texto: 'Insignias', icono: 'trophy', ruta: '/insignia', orden: 5 },
-    { id: 6, texto: 'Premios físicos', icono: 'gift', ruta: '/premiofisico', orden: 6 },
-    { id: 7, texto: 'Ingredientes', icono: 'apple', ruta: '/ingrediente', orden: 7 },
-    { id: 8, texto: 'Platos', icono: 'list', ruta: '/plato', orden: 8 },
-    { id: 9, texto: 'Menú', icono: 'cog', ruta: '/menu', orden: 9 },
-  ];
+  items: Menu[] = [];
   usuario: any = null;
 
   ngOnInit() {
     this.usuario = this.autToken.obtenerUsuario();
+    this.cargarMenu();
   }
 
   cargarMenu() {
@@ -43,6 +39,10 @@ export class LayoutComponent {
       this.items = x.sort((a, b) => a.orden - b.orden);
       this.cdr.detectChanges();
     });
+  }
+
+  irAMenu() {
+    this.router.navigate(['/menu']);
   }
 
   logout() {

@@ -1,0 +1,38 @@
+<div class="login-fondo">
+  <div class="login-caja">
+    <div class="login-logo">❖</div>
+    <h1>NutriAndina</h1>
+    <p class="login-sub">Crear cuenta</p>
+
+    <div class="campo">
+      <label>Nombres</label>
+      <input type="text" [(ngModel)]="nombres" placeholder="Ingrese sus nombres" />
+    </div>
+
+    <div class="campo">
+      <label>Apellidos</label>
+      <input type="text" [(ngModel)]="apellidos" placeholder="Ingrese sus apellidos" />
+    </div>
+
+    <div class="campo">
+      <label>DNI (opcional)</label>
+      <input type="text" maxlength="8" [(ngModel)]="dni" placeholder="Ingrese su DNI" />
+    </div>
+
+    <div class="campo">
+      <label>Usuario</label>
+      <input type="text" [(ngModel)]="username" placeholder="Elija un usuario" />
+    </div>
+
+    <div class="campo">
+      <label>Contraseña</label>
+      <input type="password" [(ngModel)]="password" placeholder="Mínimo 6 caracteres" (keyup.enter)="registrar()" />
+    </div>
+
+    @if (error) { <p class="error">{{ error }}</p> }
+    @if (exito) { <p class="login-sub">{{ exito }}</p> }
+
+    <button class="btn btn-principal btn-ancho" (click)="registrar()">Registrarme</button>
+    <p class="login-sub">¿Ya tiene cuenta? <a routerLink="/login">Iniciar sesión</a></p>
+  </div>
+</div>

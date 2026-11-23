@@ -26,6 +26,7 @@ router.register(r'menu', views.MenuViewSet)
 
 urlpatterns = [
     path('login/', views.LoginView.as_view(), name='login'),
+    path('registro/', views.RegistroView.as_view(), name='registro'),
     path('', include(router.urls)),
     path('logout/', views.LogoutViews.as_view()),
 ]

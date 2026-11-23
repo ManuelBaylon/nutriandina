@@ -11,9 +11,11 @@ import { InsigniaComponent } from './insignia/insignia';
 import { PremioFisicoComponent } from './premiofisico/premiofisico';
 import { IngredienteComponent } from './ingrediente/ingrediente';
 import { PlatoComponent } from './plato/plato';
+import { RegistroComponent } from './registro/registro';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
+  { path: 'registro', component: RegistroComponent },
   {
     path: '',
     component: LayoutComponent,

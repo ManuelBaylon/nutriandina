@@ -1,7 +1,7 @@
-﻿from rest_framework import viewsets, status
+﻿from rest_framework import viewsets, status, generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from . import serializers, models
@@ -102,6 +102,11 @@ class LoginView(ObtainAuthToken):
                 'nombres': user.nombres, 'apellidos': user.apellidos, 'rol': user.rol,
             },
         })
+
+class RegistroView(generics.CreateAPIView):
+    serializer_class = serializers.RegistroSerializer
+    permission_classes = [AllowAny]
+    authentication_classes = []
 
 class LogoutViews(APIView):
     permission_classes = [IsAuthenticated]

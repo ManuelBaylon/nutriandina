@@ -26,6 +26,9 @@ export class AuthenticationToken {
       })
     );
   }
+  registro(datos: { username: string; password: string; nombres: string; apellidos: string; dni?: string }): Observable<any> {
+    return this.http.post<any>(this.apiUrl + 'registro/', datos);
+  }
 
   getToken(): string | null {
     return localStorage.getItem('token');

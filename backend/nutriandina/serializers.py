@@ -11,6 +11,18 @@ class UsuarioSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         return models.Usuario.objects.create_user(**validated_data)
 
+class RegistroSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Usuario
+        fields = ['username', 'password', 'nombres', 'apellidos', 'dni']
+        extra_kwargs = {'password': {'write_only': True, 'min_length': 6}}
+
+    def validate_dni(self, value):
+        return value or None
+
+    def create(self, validated_data):
+        return models.Usuario.objects.create_user(rol='APODERADO', **validated_data)
+
 class ComunidadSerializer(serializers.ModelSerializer):
     establecimiento_nombre = serializers.CharField(source='establecimiento.nombre', read_only=True)
 
