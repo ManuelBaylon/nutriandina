@@ -1,0 +1,42 @@
+<div class="layout">
+  <aside class="menu-lateral">
+    <div class="sitio-titulo">
+      <svg data-p-icon="home" [size]="24"></svg>
+      <h3>NutriAndina</h3>
+    </div>
+
+    <nav class="menu-contenido">
+      @for (item of items; track item.id) {
+        <a class="menu-item" [routerLink]="item.ruta" routerLinkActive="activo"
+           [routerLinkActiveOptions]="{ exact: item.ruta === '/' }">
+          @switch (item.icono) {
+            @case ('home') { <svg data-p-icon="home" [size]="20"></svg> }
+            @case ('user') { <svg data-p-icon="user" [size]="20"></svg> }
+            @case ('users') { <svg data-p-icon="users" [size]="20"></svg> }
+            @case ('book') { <svg data-p-icon="book" [size]="20"></svg> }
+            @case ('building') { <svg data-p-icon="building" [size]="20"></svg> }
+            @case ('sitemap') { <svg data-p-icon="sitemap" [size]="20"></svg> }
+            @case ('trophy') { <svg data-p-icon="trophy" [size]="20"></svg> }
+            @case ('gift') { <svg data-p-icon="gift" [size]="20"></svg> }
+            @case ('apple') { <svg data-p-icon="apple" [size]="20"></svg> }
+            @case ('list') { <svg data-p-icon="list" [size]="20"></svg> }
+            @case ('cog') { <svg data-p-icon="cog" [size]="20"></svg> }
+          }
+          <span>{{ item.texto }}</span>
+        </a>
+      }
+    </nav>
+
+    <div class="menu-pie">
+      <span>{{ usuario?.nombres }} {{ usuario?.apellidos }}</span>
+      <p-button label="Cerrar sesión" severity="secondary" [outlined]="true" size="small" (onClick)="logout()" />
+      <small>Huánuco 2026</small>
+    </div>
+  </aside>
+
+  <div class="principal">
+    <div class="contenido">
+      <router-outlet />
+    </div>
+  </div>
+</div>

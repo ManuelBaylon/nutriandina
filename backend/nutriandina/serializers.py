@@ -111,4 +111,10 @@ class AlertaSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class MenuSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Menu
+        fields = '__all__'
+
+
 

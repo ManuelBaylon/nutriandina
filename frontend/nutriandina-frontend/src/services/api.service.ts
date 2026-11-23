@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Apoderado, Comunidad, Establecimiento, Ingrediente, Insignia, Nino, Plato, PremioFisico } from '../model/nutriandina.model';
-
+import { Apoderado, Comunidad, Establecimiento, Ingrediente, Insignia, Menu, Nino, Plato, PremioFisico } from '../model/nutriandina.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -155,5 +154,19 @@ export class ApiService {
   // ===== APODERADOS (solo lectura) =====
   GetApoderado(): Observable<Apoderado[]> {
     return this.cliente.get<Apoderado[]>(this.raizAPI + 'apoderado/');
+  }
+
+    // ===== MENU =====
+  GetMenu(): Observable<Menu[]> {
+    return this.cliente.get<Menu[]>(this.raizAPI + 'menu/');
+  }
+  PostMenu(item: Menu): Observable<Menu> {
+    return this.cliente.post<Menu>(this.raizAPI + 'menu/', item);
+  }
+  PutMenu(item: Menu): Observable<Menu> {
+    return this.cliente.put<Menu>(this.raizAPI + 'menu/' + item.id + '/', item);
+  }
+  DeleteMenu(item: Menu): Observable<void> {
+    return this.cliente.delete<void>(this.raizAPI + 'menu/' + item.id + '/');
   }
 }

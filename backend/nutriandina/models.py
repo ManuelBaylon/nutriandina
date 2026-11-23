@@ -265,3 +265,15 @@ class Alerta(models.Model):
 
     def __str__(self):
         return str(self.nino) + "-" + self.tipo
+
+class Menu(models.Model):
+    texto = models.CharField(max_length=30)
+    icono = models.CharField(max_length=30)
+    ruta = models.CharField(max_length=30)
+    orden = models.IntegerField()
+
+    class Meta:
+        ordering = ['orden']
+
+    def __str__(self):
+        return self.texto

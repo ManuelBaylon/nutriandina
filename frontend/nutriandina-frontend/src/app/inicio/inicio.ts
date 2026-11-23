@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AuthenticationToken } from '../../services/auth.service';
-import { MenuComponent } from '../menu/menu';
 
 @Component({
-  imports: [RouterLink, MenuComponent],
+  imports: [RouterLink],
   selector: 'app-inicio',
   styleUrl: './inicio.css',
   templateUrl: './inicio.html',

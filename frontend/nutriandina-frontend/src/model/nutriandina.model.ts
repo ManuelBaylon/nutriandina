@@ -17,3 +17,4 @@ export interface Control { id: number; nino: number; personal: number; fecha_pro
 export interface Recordatorio { id: number; control: number; canal: string; fecha_envio: string | null; estado: string; }
 export interface EvaluacionSemanal { id: number; nino: number; fecha_inicio_semana: string; dias_suplemento: number; dias_alimentacion: number; promedio_redondeado: number; nivel: string; }
 export interface Alerta { id: number; nino: number; personal: number | null; tipo: string; fecha_generada: string; estado: string; fecha_atencion: string | null; }
+export interface Menu { id: number; texto: string; icono: string; ruta: string; orden: number; }

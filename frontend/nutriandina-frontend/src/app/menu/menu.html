@@ -1,19 +1,35 @@
-<header class="cabecera-sitio">
-  <div class="cabecera-fila">
-    <a routerLink="/inicio" class="marca"><span class="marca-hoja">❖</span> NutriAndina</a>
-    <div class="cabecera-usuario">
-      <span>{{ usuario?.nombres }} {{ usuario?.apellidos }}</span>
-      <button class="btn btn-salir" (click)="logout()">Cerrar sesión</button>
-    </div>
-  </div>
-  <nav class="cabecera-nav">
-      <a routerLink="/inicio" routerLinkActive="activo">Inicio</a>
-      <a routerLink="/establecimiento" routerLinkActive="activo">Establecimientos</a>
-      <a routerLink="/comunidad" routerLinkActive="activo">Comunidades</a>
-      <a routerLink="/nino" routerLinkActive="activo">Niños</a>
-      <a routerLink="/insignia" routerLinkActive="activo">Insignias</a>
-      <a routerLink="/premiofisico" routerLinkActive="activo">Premios físicos</a>
-      <a routerLink="/ingrediente" routerLinkActive="activo">Ingredientes</a>
-      <a routerLink="/plato" routerLinkActive="activo">Platos</a>
-  </nav>
-</header>
+<h1>Elementos del Menú</h1>
+<p-button label="Crear Menu" severity="success" (onClick)="nuevo()" />
+
+<p-table [value]="items" [tableStyle]="{ 'min-width': '40rem' }">
+  <ng-template #header>
+    <tr><th>Texto</th><th>Icono</th><th>Ruta</th><th>Orden</th><th>Acciones</th></tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.texto }}</td>
+      <td>{{ item.icono }}</td>
+      <td>{{ item.ruta }}</td>
+      <td>{{ item.orden }}</td>
+      <td>
+        <p-button label="Eliminar" severity="danger" (onClick)="eliminar(item)" />
+        <p-button label="Actualizar" severity="info" (onClick)="editar(item)" />
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <tr><td colspan="5">No hay registros.</td></tr>
+  </ng-template>
+</p-table>
+
+<p-dialog [(visible)]="verDialogo" [modal]="true" [style]="{ width: '450px' }" header="Menú - datos">
+  <div class="campo"><label>Texto</label><input type="text" [(ngModel)]="menu.texto" /></div>
+  <div class="campo"><label>Icono (home, user, users, book, building, sitemap, trophy, gift, apple, list, cog)</label><input type="text" [(ngModel)]="menu.icono" /></div>
+  <div class="campo"><label>Ruta (por ejemplo /nino)</label><input type="text" [(ngModel)]="menu.ruta" /></div>
+  <div class="campo"><label>Orden</label><input type="number" [(ngModel)]="menu.orden" /></div>
+
+  <ng-template #footer>
+    <p-button label="Cancelar" severity="secondary" (onClick)="verDialogo = false" />
+    <p-button label="Guardar" (onClick)="guardar()" />
+  </ng-template>
+</p-dialog>

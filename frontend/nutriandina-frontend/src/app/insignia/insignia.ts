@@ -4,11 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { ApiService } from '../../services/api.service';
-import { MenuComponent } from '../menu/menu';
 import { Insignia } from '../../model/nutriandina.model';
 
 @Component({
-  imports: [CommonModule, FormsModule, TableModule, DialogModule, MenuComponent],
+  imports: [CommonModule, FormsModule, TableModule, DialogModule],
   selector: 'app-insignia',
   styleUrl: './insignia.css',
   templateUrl: './insignia.html',

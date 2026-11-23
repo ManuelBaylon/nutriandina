@@ -1,26 +1,42 @@
-import { Component } from '@angular/core';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { AuthenticationToken } from '../../services/auth.service';
+import { ChangeDetectorRef, Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
+import { ApiService } from '../../services/api.service';
+import { Menu } from '../../model/nutriandina.model';
 
 @Component({
-  imports: [RouterLink, RouterLinkActive],
+  imports: [CommonModule, FormsModule, TableModule, DialogModule, ButtonModule],
   selector: 'app-menu',
   styleUrl: './menu.css',
   templateUrl: './menu.html',
 })
 export class MenuComponent {
-  constructor(private router: Router, private autToken: AuthenticationToken) {}
+  constructor(private api: ApiService, private cdr: ChangeDetectorRef) {}
 
-  usuario: any = null;
+  items: Menu[] = [];
+  verDialogo: boolean = false;
+  menu: Menu = {} as Menu;
 
-  ngOnInit() {
-    this.usuario = this.autToken.obtenerUsuario();
+  ngOnInit() { this.listar(); }
+
+  listar() {
+    this.api.GetMenu().subscribe(x => { this.items = x; this.cdr.detectChanges(); });
   }
+  nuevo() { this.menu = {} as Menu; this.verDialogo = true; }
+  editar(item: Menu) { this.menu = { ...item }; this.verDialogo = true; }
 
-  logout() {
-    this.autToken.logout().subscribe({
-      complete: () => this.router.navigate(['login']),
-      error: () => { this.autToken.limpiarSesion(); this.router.navigate(['login']); }
-    });
+  guardar() {
+    if (this.menu.id) {
+      this.api.PutMenu(this.menu).subscribe(() => { this.verDialogo = false; this.listar(); });
+    } else {
+      this.api.PostMenu(this.menu).subscribe(() => { this.verDialogo = false; this.listar(); });
+    }
+  }
+  eliminar(item: Menu) {
+    if (!item.id) return;
+    this.api.DeleteMenu(item).subscribe(() => this.listar());
   }
 }

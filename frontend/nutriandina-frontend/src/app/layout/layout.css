@@ -1,0 +1,25 @@
+:host { display: block; min-height: 100vh; }
+.layout { display: flex; min-height: 100vh; }
+
+.menu-lateral {
+  width: 220px; padding: 16px;
+  display: flex; flex-direction: column;
+  background: white; color: black;
+  border-right: 1px solid #ddd;
+}
+.sitio-titulo { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+.sitio-titulo h3 { margin: 0; font-size: 1rem; }
+
+.menu-contenido { flex: 1; }
+.menu-item {
+  display: flex; align-items: center; gap: 6px;
+  padding: 4px 0; margin-left: 8px;
+  color: black; text-decoration: none;
+}
+.menu-item:hover { text-decoration: underline; }
+.menu-item.activo { font-weight: bold; }
+
+.menu-pie { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; font-size: 0.85rem; }
+
+.principal { flex: 1; min-width: 0; background: white; }
+.contenido { padding: 20px; }

@@ -22,6 +22,7 @@ router.register(r'control', views.ControlViewSet)
 router.register(r'recordatorio', views.RecordatorioViewSet)
 router.register(r'evaluacion_semanal', views.EvaluacionSemanalViewSet)
 router.register(r'alerta', views.AlertaViewSet)
+router.register(r'menu', views.MenuViewSet)
 
 urlpatterns = [
     path('login/', views.LoginView.as_view(), name='login'),

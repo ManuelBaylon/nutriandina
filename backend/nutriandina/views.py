@@ -85,6 +85,10 @@ class AlertaViewSet(viewsets.ModelViewSet):
     queryset = models.Alerta.objects.all()
     serializer_class = serializers.AlertaSerializer
 
+class MenuViewSet(viewsets.ModelViewSet):
+    queryset = models.Menu.objects.all()
+    serializer_class = serializers.MenuSerializer
+
 class LoginView(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data, context={'request': request})

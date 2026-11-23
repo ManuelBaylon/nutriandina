@@ -2,6 +2,8 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './login-component/login-component';
 import { InicioComponent } from './inicio/inicio';
 import { AuthGuard } from '../services/auth.guard';
+import { LayoutComponent } from './layout/layout';
+import { MenuComponent } from './menu/menu';
 import { EstablecimientoComponent } from './establecimiento/establecimiento';
 import { ComunidadComponent } from './comunidad/comunidad';
 import { NinoComponent } from './nino/nino';
@@ -12,14 +14,22 @@ import { PlatoComponent } from './plato/plato';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'inicio', component: InicioComponent, canActivate: [AuthGuard] },
-  { path: 'establecimiento', component: EstablecimientoComponent, canActivate: [AuthGuard] },
-  { path: 'comunidad', component: ComunidadComponent, canActivate: [AuthGuard] },
-  { path: 'nino', component: NinoComponent, canActivate: [AuthGuard] },
-  { path: 'insignia', component: InsigniaComponent, canActivate: [AuthGuard] },
-  { path: 'premiofisico', component: PremioFisicoComponent, canActivate: [AuthGuard] },
-  { path: 'ingrediente', component: IngredienteComponent, canActivate: [AuthGuard] },
-  { path: 'plato', component: PlatoComponent, canActivate: [AuthGuard] },
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: '**', redirectTo: 'login' },
+  {
+    path: '',
+    component: LayoutComponent,
+    canActivate: [AuthGuard],
+    children: [
+      { path: '', component: InicioComponent },
+      { path: 'inicio', redirectTo: '', pathMatch: 'full' },
+      { path: 'establecimiento', component: EstablecimientoComponent },
+      { path: 'comunidad', component: ComunidadComponent },
+      { path: 'nino', component: NinoComponent },
+      { path: 'insignia', component: InsigniaComponent },
+      { path: 'premiofisico', component: PremioFisicoComponent },
+      { path: 'ingrediente', component: IngredienteComponent },
+      { path: 'plato', component: PlatoComponent },
+      { path: 'menu', component: MenuComponent },
+    ],
+  },
+  { path: '**', redirectTo: '' },
 ];
