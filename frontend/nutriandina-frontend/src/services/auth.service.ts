@@ -1,17 +1,7 @@
 ﻿import { Injectable, inject } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable, tap } from "rxjs";
-
-export interface LoginResponse {
-  token: string;
-  usuario: {
-    id: number;
-    username: string;
-    apellidos: string;
-    nombres: string;
-    rol: string;
-  };
-}
+import { LoginResponse } from "../model/loginresponse.model";
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationToken {
@@ -21,8 +11,7 @@ export class AuthenticationToken {
   login(username: string, password: string): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(this.apiUrl + 'login/', { username, password }).pipe(
       tap(response => {
-        localStorage.setItem('token', response.token);
-        localStorage.setItem('usuario', JSON.stringify(response.usuario));
+        sessionStorage.setItem('token', response.token);
       })
     );
   }
@@ -31,25 +20,15 @@ export class AuthenticationToken {
   }
 
   getToken(): string | null {
-    return localStorage.getItem('token');
+    return sessionStorage.getItem('token');
   }
 
   isAuthenticated(): boolean {
-    return !!localStorage.getItem('token');
-  }
-
-  obtenerUsuario() {
-    const u = localStorage.getItem('usuario');
-    return u ? JSON.parse(u) : null;
-  }
-
-  obtenerRol(): string | null {
-    return this.obtenerUsuario()?.rol ?? null;
+    return !!this.getToken();
   }
 
   limpiarSesion(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('usuario');
+    sessionStorage.removeItem('token');
   }
 
   logout(): Observable<any> {

@@ -4,7 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table'; 
 import { DialogModule } from 'primeng/dialog';
 import { ApiService } from '../../services/api.service';
-import { Comunidad, Establecimiento } from '../../model/nutriandina.model';
+import { Comunidad } from '../../model/comunidad.model';
+import { Establecimiento } from '../../model/establecimiento.model';
 
 @Component({
   imports: [CommonModule, FormsModule, TableModule, DialogModule],

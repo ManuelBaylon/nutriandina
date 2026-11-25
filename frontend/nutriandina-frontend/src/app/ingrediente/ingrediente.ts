@@ -5,7 +5,7 @@ import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { FileUpload, FileUploadModule } from 'primeng/fileupload';
 import { ApiService } from '../../services/api.service';
-import { Ingrediente } from '../../model/nutriandina.model';
+import { Ingrediente } from '../../model/ingrediente.model';
 
 @Component({
   imports: [CommonModule, FormsModule, TableModule, DialogModule, FileUploadModule],

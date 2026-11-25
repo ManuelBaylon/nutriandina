@@ -4,7 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { ApiService } from '../../services/api.service';
-import { Ingrediente, Plato } from '../../model/nutriandina.model';
+import { Ingrediente } from '../../model/ingrediente.model';
+import { Plato } from '../../model/plato.model';
 
 @Component({
   imports: [CommonModule, FormsModule, TableModule, DialogModule],

@@ -1,12 +1,24 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Apoderado, Comunidad, Establecimiento, Ingrediente, Insignia, Menu, Nino, Plato, PremioFisico } from '../model/nutriandina.model';
+import { Apoderado } from '../model/apoderado.model';
+import { Comunidad } from '../model/comunidad.model';
+import { Establecimiento } from '../model/establecimiento.model';
+import { Ingrediente } from '../model/ingrediente.model';
+import { Insignia } from '../model/insignia.model';
+import { Menu } from '../model/menu.model';
+import { Nino } from '../model/nino.model';
+import { Plato } from '../model/plato.model';
+import { PremioFisico } from '../model/premiofisico.model';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
   private raizAPI = 'http://127.0.0.1:8000/api/';
+  private headers = new HttpHeaders({
+    'Content-Type': 'application/json'
+  });
 
   constructor(private cliente: HttpClient) {}
 
@@ -16,11 +28,11 @@ export class ApiService {
   }
 
   PostEstablecimiento(item: Establecimiento): Observable<Establecimiento> {
-    return this.cliente.post<Establecimiento>(this.raizAPI + 'establecimiento/', item);
+    return this.cliente.post<Establecimiento>(this.raizAPI + 'establecimiento/', JSON.stringify(item), { headers: this.headers });
   }
 
   PutEstablecimiento(item: Establecimiento): Observable<Establecimiento> {
-    return this.cliente.put<Establecimiento>(this.raizAPI + 'establecimiento/' + item.id + '/', item);
+    return this.cliente.put<Establecimiento>(this.raizAPI + 'establecimiento/' + item.id + '/', JSON.stringify(item), { headers: this.headers });
   }
 
   DeleteEstablecimiento(item: Establecimiento): Observable<void> {
@@ -33,11 +45,11 @@ export class ApiService {
   }
 
   PostComunidad(item: Comunidad): Observable<Comunidad> {
-    return this.cliente.post<Comunidad>(this.raizAPI + 'comunidad/', item);
+    return this.cliente.post<Comunidad>(this.raizAPI + 'comunidad/', JSON.stringify(item), { headers: this.headers });
   }
 
   PutComunidad(item: Comunidad): Observable<Comunidad> {
-    return this.cliente.put<Comunidad>(this.raizAPI + 'comunidad/' + item.id + '/', item);
+    return this.cliente.put<Comunidad>(this.raizAPI + 'comunidad/' + item.id + '/', JSON.stringify(item), { headers: this.headers });
   }
 
   DeleteComunidad(item: Comunidad): Observable<void> {
@@ -50,11 +62,11 @@ export class ApiService {
   }
 
   PostNino(item: Nino): Observable<Nino> {
-    return this.cliente.post<Nino>(this.raizAPI + 'nino/', item);
+    return this.cliente.post<Nino>(this.raizAPI + 'nino/', JSON.stringify(item), { headers: this.headers });
   }
 
   PutNino(item: Nino): Observable<Nino> {
-    return this.cliente.put<Nino>(this.raizAPI + 'nino/' + item.id + '/', item);
+    return this.cliente.put<Nino>(this.raizAPI + 'nino/' + item.id + '/', JSON.stringify(item), { headers: this.headers });
   }
 
   DeleteNino(item: Nino): Observable<void> {
@@ -67,11 +79,11 @@ export class ApiService {
   }
 
   PostInsignia(item: Insignia): Observable<Insignia> {
-    return this.cliente.post<Insignia>(this.raizAPI + 'insignia/', item);
+    return this.cliente.post<Insignia>(this.raizAPI + 'insignia/', JSON.stringify(item), { headers: this.headers });
   }
 
   PutInsignia(item: Insignia): Observable<Insignia> {
-    return this.cliente.put<Insignia>(this.raizAPI + 'insignia/' + item.id + '/', item);
+    return this.cliente.put<Insignia>(this.raizAPI + 'insignia/' + item.id + '/', JSON.stringify(item), { headers: this.headers });
   }
 
   DeleteInsignia(item: Insignia): Observable<void> {
@@ -84,11 +96,11 @@ export class ApiService {
   }
 
   PostPremioFisico(item: PremioFisico): Observable<PremioFisico> {
-    return this.cliente.post<PremioFisico>(this.raizAPI + 'premio_fisico/', item);
+    return this.cliente.post<PremioFisico>(this.raizAPI + 'premio_fisico/', JSON.stringify(item), { headers: this.headers });
   }
 
   PutPremioFisico(item: PremioFisico): Observable<PremioFisico> {
-    return this.cliente.put<PremioFisico>(this.raizAPI + 'premio_fisico/' + item.id + '/', item);
+    return this.cliente.put<PremioFisico>(this.raizAPI + 'premio_fisico/' + item.id + '/', JSON.stringify(item), { headers: this.headers });
   }
 
   DeletePremioFisico(item: PremioFisico): Observable<void> {
@@ -101,11 +113,11 @@ export class ApiService {
   }
 
   PostIngrediente(item: Ingrediente): Observable<Ingrediente> {
-    return this.cliente.post<Ingrediente>(this.raizAPI + 'ingrediente/', item);
+    return this.cliente.post<Ingrediente>(this.raizAPI + 'ingrediente/', JSON.stringify(item), { headers: this.headers });
   }
 
   PutIngrediente(item: Ingrediente): Observable<Ingrediente> {
-    return this.cliente.put<Ingrediente>(this.raizAPI + 'ingrediente/' + item.id + '/', item);
+    return this.cliente.put<Ingrediente>(this.raizAPI + 'ingrediente/' + item.id + '/', JSON.stringify(item), { headers: this.headers });
   }
 
   DeleteIngrediente(item: Ingrediente): Observable<void> {
@@ -140,11 +152,11 @@ export class ApiService {
   }
 
   PostPlato(item: Plato): Observable<Plato> {
-    return this.cliente.post<Plato>(this.raizAPI + 'plato/', item);
+    return this.cliente.post<Plato>(this.raizAPI + 'plato/', JSON.stringify(item), { headers: this.headers });
   }
 
   PutPlato(item: Plato): Observable<Plato> {
-    return this.cliente.put<Plato>(this.raizAPI + 'plato/' + item.id + '/', item);
+    return this.cliente.put<Plato>(this.raizAPI + 'plato/' + item.id + '/', JSON.stringify(item), { headers: this.headers });
   }
 
   DeletePlato(item: Plato): Observable<void> {
@@ -161,10 +173,10 @@ export class ApiService {
     return this.cliente.get<Menu[]>(this.raizAPI + 'menu/');
   }
   PostMenu(item: Menu): Observable<Menu> {
-    return this.cliente.post<Menu>(this.raizAPI + 'menu/', item);
+    return this.cliente.post<Menu>(this.raizAPI + 'menu/', JSON.stringify(item), { headers: this.headers });
   }
   PutMenu(item: Menu): Observable<Menu> {
-    return this.cliente.put<Menu>(this.raizAPI + 'menu/' + item.id + '/', item);
+    return this.cliente.put<Menu>(this.raizAPI + 'menu/' + item.id + '/', JSON.stringify(item), { headers: this.headers });
   }
   DeleteMenu(item: Menu): Observable<void> {
     return this.cliente.delete<void>(this.raizAPI + 'menu/' + item.id + '/');

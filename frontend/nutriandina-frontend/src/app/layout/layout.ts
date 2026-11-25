@@ -5,7 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { Home, User, Users, Book, Building, Sitemap, Trophy, Gift, Apple, List, Cog } from '@primeicons/angular';
 import { ApiService } from '../../services/api.service';
 import { AuthenticationToken } from '../../services/auth.service';
-import { Menu } from '../../model/nutriandina.model';
+import { Menu } from '../../model/menu.model';
 
 @Component({
   imports: [RouterOutlet, RouterLink, RouterLinkActive, ButtonModule,
@@ -27,10 +27,8 @@ export class LayoutComponent {
   }
 
   items: Menu[] = [];
-  usuario: any = null;
 
   ngOnInit() {
-    this.usuario = this.autToken.obtenerUsuario();
     this.cargarMenu();
   }
 

@@ -5,7 +5,7 @@ import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { ApiService } from '../../services/api.service';
-import { Menu } from '../../model/nutriandina.model';
+import { Menu } from '../../model/menu.model';
 
 @Component({
   imports: [CommonModule, FormsModule, TableModule, DialogModule, ButtonModule],

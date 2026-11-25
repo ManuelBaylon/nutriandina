@@ -25,9 +25,7 @@ router.register(r'alerta', views.AlertaViewSet)
 router.register(r'menu', views.MenuViewSet)
 
 urlpatterns = [
-    path('login/', views.LoginView.as_view(), name='login'),
+    path('logout/', views.LogoutView.as_view()),
     path('registro/', views.RegistroView.as_view(), name='registro'),
     path('', include(router.urls)),
-    path('logout/', views.LogoutViews.as_view()),
 ]
-
